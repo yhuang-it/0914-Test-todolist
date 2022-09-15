@@ -19,13 +19,4 @@ public class ToDoListServiceImpl {
     public List<ToDoList> getAll() {
         return toDoListRepository.findAll();
     }
-
-    @Override
-    public void addToDoList(ToDoList toDoList) {
-        Optional<ToDoList> existingToDoList = toDoListRepository.findByIdAndTargetDate(toDoList.getId(), toDoList.getTargetDate());
-
-        if (existingToDoList.isPresent()) {
-            throw new IllegalStateException(String.format("Todo list %s:%s is already in catalog", toDoList.getId(), toDoList.getTargetDate()));
-        }
-    }
 }
